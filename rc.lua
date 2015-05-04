@@ -10,7 +10,7 @@ beautiful = require("beautiful")
 naughty = require("naughty")
 menubar = require("menubar")
 
-themesdir = "/home/pwny/.config/awesome/themes/"
+themesdir = "/home/jlawson/.config/awesome/themes/"
 themename = "arch"
 themedir  = themesdir .. themename
 themepath = themedir .. "/theme.lua"
