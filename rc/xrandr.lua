@@ -132,4 +132,4 @@ end
 
 globalkeys = awful.util.table.join(
    globalkeys,
-   awful.key({}, "XF86Display", xrandr))
+   awful.key({modkey}, "F13", xrandr))

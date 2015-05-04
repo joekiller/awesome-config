@@ -27,7 +27,7 @@ wifiicon = wibox.widget.imagebox()
 wifiicon:set_image(beautiful.widget_wifi)
 
 wifiwidget = wibox.widget.textbox()
-vicious.register(wifiwidget, vicious.widgets.wifi, ' ${ssid} [${linp}%]', 7, "wlp2s0")
+vicious.register(wifiwidget, vicious.widgets.wifi, ' ${ssid} [${linp}%]', 7, "wlp3s0")
 
 spacerwidget = wibox.widget.imagebox()
 spacerwidget:set_image(beautiful.widget_spacer)
