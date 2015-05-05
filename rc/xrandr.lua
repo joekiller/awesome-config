@@ -77,9 +77,22 @@ local function menu()
 
       menu[#menu + 1] = { label,
 			  cmd,
-			  icons.lookup({ name = "display", type = "devices" }) }
+			  icons.lookup({ name = "display", type = "devices" })}
    end
-
+   for _, choice in pairs(choices) do
+      local cmd = "xrandr --auto"
+      for i, o in pairs(choice) do
+         if i > 1 then
+            label = ""
+            cmd = cmd .. " --output " .. o .. " --auto"
+            cmd = cmd .. " --same-as " .. choice[i-1]
+            label = label .. 'Mirror ' ..  '<span weight="bold">' .. choice[i-1] .. '</span> + <span weight="bold">' .. o .. '</span>'
+            menu[#menu + 1] = { label,
+                                cmd,
+                                icons.lookup({ name = "display", type = "devices" })}
+         end
+      end
+   end
    return menu
 end
 
@@ -132,4 +145,4 @@ end
 
 globalkeys = awful.util.table.join(
    globalkeys,
-   awful.key({modkey}, "F13", xrandr))
+   awful.key({modkey}, "XF86Tools", xrandr))

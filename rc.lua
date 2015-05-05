@@ -14,7 +14,7 @@ themesdir = "/home/jlawson/.config/awesome/themes/"
 themename = "arch"
 themedir  = themesdir .. themename
 themepath = themedir .. "/theme.lua"
-terminal = "urxvt"
+terminal = "xterm"
 editor = os.getenv("EDITOR") or "emacs"
 editor_cmd = terminal .. " -e " .. editor
 modkey = "Mod4"
@@ -125,6 +125,7 @@ end
 
 run_once("unagi")
 run_once("pulseaudio", "--start")
+run_once("sudo /usr/bin/max-bright")
 
 loadrc("widgets")
 loadrc("bindings")
