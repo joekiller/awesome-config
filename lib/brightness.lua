@@ -5,6 +5,7 @@ local naughty      = require("naughty")
 local tonumber     = tonumber
 local string       = string
 local os           = os
+local math         = math
 
 -- A bit odd, but...
 require("lib/icons")
@@ -21,7 +22,7 @@ local function report()
    local icon = icons.lookup({name = "display-brightness",
 			      type = "status"})
 
-   nid = naughty.notify({ text = string.format("%3d %%", out),
+   nid = naughty.notify({ text = string.format("%3d %%", math.floor(out)),
 			  icon = icon,
 			  font = "Free Sans Bold 24",
 			  replaces_id = nid }).id
