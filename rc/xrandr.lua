@@ -74,7 +74,6 @@ local function menu()
 	    label = label .. '<span weight="bold">' .. o .. '</span>'
 	 end
       end
-
       menu[#menu + 1] = { label,
 			  cmd,
 			  icons.lookup({ name = "display", type = "devices" })}
@@ -121,6 +120,7 @@ local function xrandr()
       state.iterator = nil
    else
       label, action, icon = unpack(next)
+      action = action .. ";xinput --map-to-output 13 eDP1"
    end
    state.cid = naughty.notify({ text = label,
 				icon = icon,
@@ -137,7 +137,7 @@ local function xrandr()
 			     state.timer = nil
 			     state.iterator = nil
 			     if action then
-				awful.util.spawn(action, false)
+				awful.util.spawn_with_shell(action, false)
 			     end
 			  end)
    state.timer:start()
@@ -145,4 +145,4 @@ end
 
 globalkeys = awful.util.table.join(
    globalkeys,
-   awful.key({modkey}, "XF86Tools", xrandr))
+   awful.key({modkey}, "F12", xrandr))
