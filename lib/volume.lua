@@ -13,9 +13,9 @@ module("carb0n/volume")
 
 local volid = nil
 local function change(what)
-   os.execute("amixer -q sset Headphone " .. what, false)
+   os.execute("amixer -q sset Master " .. what, false)
    -- Read the current value
-   local out = awful.util.pread("amixer sget Headphone")
+   local out = awful.util.pread("amixer sget Master")
    local vol, mute = out:match("([%d]+)%%.*%[([%l]*)")
    if not mute or not vol then return end
 
