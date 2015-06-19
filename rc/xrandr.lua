@@ -120,7 +120,7 @@ local function xrandr()
       state.iterator = nil
    else
       label, action, icon = unpack(next)
-      action = action .. ";xinput --map-to-output 13 eDP1"
+      action = action .. ";xinput --map-to-output 14 eDP1"
    end
    state.cid = naughty.notify({ text = label,
 				icon = icon,

@@ -126,10 +126,12 @@ end
 run_once("unagi")
 run_once("pulseaudio", "--start")
 run_once("sudo /usr/bin/max-bright")
+run_once("pasystray")
 
 loadrc("widgets")
 loadrc("bindings")
 loadrc("xrandr")
+run_once("xinput --map-to-output 14 eDP1")
 
 root.keys(globalkeys)
 
