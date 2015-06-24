@@ -10,6 +10,10 @@ beautiful = require("beautiful")
 naughty = require("naughty")
 menubar = require("menubar")
 
+-- Menubar config
+app_folders = { "/usr/share/applications/", "~/.local/share/applications/" }
+-- end Menubar config
+
 themesdir = "/home/jlawson/.config/awesome/themes/"
 themename = "arch"
 themedir  = themesdir .. themename
