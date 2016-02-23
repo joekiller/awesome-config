@@ -11,14 +11,14 @@ naughty = require("naughty")
 menubar = require("menubar")
 
 -- Menubar config
-app_folders = { "/usr/share/applications/", "~/.local/share/applications/" }
+menubar.menu_gen.all_menu_dirs = { "/usr/share/applications/", "/usr/local/share/applications", "~/.local/share/applications" }
 -- end Menubar config
 
 themesdir = "/home/jlawson/.config/awesome/themes/"
 themename = "arch"
 themedir  = themesdir .. themename
 themepath = themedir .. "/theme.lua"
-terminal = "xterm"
+terminal = "xterm -ls"
 editor = os.getenv("EDITOR") or "emacs"
 editor_cmd = terminal .. " -e " .. editor
 modkey = "Mod4"
@@ -135,9 +135,25 @@ run_once("pasystray")
 loadrc("widgets")
 loadrc("bindings")
 loadrc("xrandr")
-run_once("xinput --map-to-output 14 eDP1")
-
+run_once("xfce4-clipman")
+run_once("xautolock -time 10 -locker slock")
+run_once("nm-applet")
 root.keys(globalkeys)
+
+-- Make the touchscreen work
+
+function os.capture(cmd, raw)
+  local f = assert(io.popen(cmd, 'r'))
+  local s = assert(f:read('*a'))
+  f:close()
+  if raw then return s end
+  s = string.gsub(s, '^%s+', '')
+  s = string.gsub(s, '%s+$', '')
+  s = string.gsub(s, '[\n\r]+', ' ')
+  return s
+end
+
+run_once("xinput --map-to-output " .. string.sub(os.capture("xinput list | grep Touchscreen | awk '{print $5}'", false), 4) .. " eDP1")
 
 -- Rules to apply to new clients (through the "manage" signal).
 awful.rules.rules = {

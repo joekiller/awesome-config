@@ -194,7 +194,9 @@ globalkeys = awful.util.table.join(
     awful.key({ }, "XF86AudioLowerVolume",  APW.Down),
     awful.key({ }, "XF86AudioMute",         APW.ToggleMute),
     awful.key({ }, "XF86MonBrightnessUp",   brightness.increase),
-    awful.key({ }, "XF86MonBrightnessDown", brightness.decrease)
+    awful.key({ }, "XF86MonBrightnessDown", brightness.decrease),
+    -- Screenshot
+    awful.key({ }, "Print", function() awful.util.spawn("xfce4-screenshooter") end)
 )
 clientkeys = awful.util.table.join(
     awful.key({ modkey,           }, "f",      function (c) c.fullscreen = not c.fullscreen  end),
