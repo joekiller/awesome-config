@@ -138,6 +138,7 @@ loadrc("xrandr")
 run_once("xfce4-clipman")
 run_once("xautolock -time 10 -locker slock")
 run_once("nm-applet")
+run_once("synclient TapButton3=2")
 root.keys(globalkeys)
 
 -- Make the touchscreen work
