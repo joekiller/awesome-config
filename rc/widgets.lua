@@ -21,13 +21,13 @@ function(widget, args)
       baticon:set_image(beautiful.widget_bat_caution)
    else
       baticon:set_image(beautiful.widget_bat_low) end
-return string.format("%s %d%%", args[1], args[2]) end, 43, "BAT1")
+return string.format("%s %d%%", args[1], args[2]) end, 43, "BAT0")
 
 wifiicon = wibox.widget.imagebox()
 wifiicon:set_image(beautiful.widget_wifi)
 
 wifiwidget = wibox.widget.textbox()
-vicious.register(wifiwidget, vicious.widgets.wifi, ' ${ssid} [${linp}%]', 7, "wlp6s0")
+vicious.register(wifiwidget, vicious.widgets.wifi, ' ${ssid} [${linp}%]', 7, "wlp2s0")
 
 spacerwidget = wibox.widget.imagebox()
 spacerwidget:set_image(beautiful.widget_spacer)

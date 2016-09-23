@@ -129,7 +129,6 @@ end
 
 run_once("unagi")
 run_once("pulseaudio", "--start")
-run_once("sudo /usr/bin/max-bright")
 run_once("pasystray")
 
 loadrc("widgets")
@@ -138,7 +137,6 @@ loadrc("xrandr")
 run_once("xfce4-clipman")
 run_once("xautolock -time 10 -locker slock")
 run_once("nm-applet")
-run_once("synclient TapButton3=2")
 root.keys(globalkeys)
 
 -- Make the touchscreen work
