@@ -9,6 +9,7 @@ wibox = require("wibox")
 beautiful = require("beautiful")
 naughty = require("naughty")
 menubar = require("menubar")
+scratch = require("scratch")
 
 -- Menubar config
 menubar.menu_gen.all_menu_dirs = { "/usr/share/applications/", "/usr/local/share/applications", "~/.local/share/applications" }
@@ -18,7 +19,7 @@ themesdir = "/home/jlawson/.config/awesome/themes/"
 themename = "arch"
 themedir  = themesdir .. themename
 themepath = themedir .. "/theme.lua"
-terminal = "xterm -ls"
+terminal = "urxvt"
 editor = os.getenv("EDITOR") or "emacs"
 editor_cmd = terminal .. " -e " .. editor
 modkey = "Mod4"
@@ -247,3 +248,4 @@ end)
 
 client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
+
