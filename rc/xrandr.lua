@@ -120,7 +120,7 @@ function xrandr()
       state.iterator = nil
    else
       label, action, icon = unpack(next)
-      action = action .. "xinput --map-to-output " .. string.sub(os.capture("xinput list | grep Touchscreen | awk '{print $5}'", false), 4) .. " eDP1"
+      action = action .. ";xinput --map-to-output " .. string.sub(os.capture("xinput list | grep Touchscreen | awk '{print $5}'", false), 4) .. " eDP1"
    end
    state.cid = naughty.notify({ text = label,
 				icon = icon,
