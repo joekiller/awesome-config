@@ -15,17 +15,16 @@ module("carb0n/brightness")
 
 local nid = nil
 local function report()
-   local out = awful.util.pread("xbacklight -get")
-   if not out then return end
+   awful.spawn.easy_async({"bash", "-c", "xbacklight -get"}, function(stdout, stderr, reason, exit_code)
+       out = tonumber(stdout)
+       local icon = icons.lookup({name = "display-brightness",
+           type = "status"})
 
-   out = tonumber(out)
-   local icon = icons.lookup({name = "display-brightness",
-			      type = "status"})
-
-   nid = naughty.notify({ text = string.format("%3d %%", math.floor(out)),
-			  icon = icon,
-			  font = "Free Sans Bold 24",
-			  replaces_id = nid }).id
+       nid = naughty.notify({ text = string.format("%3d %%", math.floor(out)),
+           icon = icon,
+           font = "Free Sans Bold 24",
+           replaces_id = nid }).id
+   end)
 end
 
 function increase()
