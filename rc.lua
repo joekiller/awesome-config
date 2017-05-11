@@ -137,6 +137,15 @@ awful.layout.layouts = {
     awful.layout.suit.corner.nw,
 }
 
+tags = {
+    names  = { "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX" },
+    layout = { awful.layout.layouts[6], awful.layout.layouts[3],
+        awful.layout.layouts[3], awful.layout.layouts[3],
+        awful.layout.layouts[6], awful.layout.layouts[3],
+        awful.layout.layouts[6], awful.layout.layouts[3],
+        awful.layout.layouts[8] }
+}
+
 loadrc("widgets")
 loadrc("xrandr")
 run_once("unagi")
@@ -288,7 +297,7 @@ awful.screen.connect_for_each_screen(function(s)
     set_wallpaper(s)
 
     -- Each screen has its own tag table.
-    awful.tag({ "1", "2", "3", "4", "5", "6", "7", "8", "9" }, s, awful.layout.layouts[1])
+    awful.tag(tags.names, s, tags.layout)
 
     -- Create a promptbox for each screen
     s.mypromptbox = awful.widget.prompt()
