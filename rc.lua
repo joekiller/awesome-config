@@ -561,7 +561,7 @@ for i = 1, 9 do
 end
 
 clientbuttons = gears.table.join(
-    awful.button({ }, 1, function (c) client.focus = c; c:raise() end),
+--    awful.button({ }, 1, function (c) client.focus = c; c:raise() end),
     awful.button({ modkey }, 1, awful.mouse.client.move),
     awful.button({ modkey }, 3, awful.mouse.client.resize))
 
@@ -581,7 +581,7 @@ awful.rules.rules = {
                      keys = clientkeys,
                      buttons = clientbuttons,
                      screen = awful.screen.preferred,
-                     placement = awful.placement.no_overlap+awful.placement.no_offscreen
+--                     placement = awful.placement.no_overlap+awful.placement.no_offscreen
      }
     },
 
@@ -627,7 +627,7 @@ awful.rules.rules = {
             focusable = false,
             ontop = true,
             titlebars_enabled = false,
-            placement = awful.placement.next_to_mouse + awful.placement.no_offscreen,
+--            placement = awful.placement.next_to_mouse + awful.placement.no_offscreen,
             floating = true} },
 
 
