@@ -321,7 +321,7 @@ awful.screen.connect_for_each_screen(function(s)
 
     -- Quake terminal
 
-    s.quake = lain.util.quake({ app = terminal })
+    s.quake = lain.util.quake({ app = terminal, followtag = true })
 
     -- Add widgets to the wibox
     s.mywibox:setup {
@@ -470,8 +470,7 @@ globalkeys = gears.table.join(
     -- xrandr
     awful.key({ modkey }, "F12", xrandr),
     -- Dropdown application
-    awful.key({ modkey, }, "z", function () awful.screen.focused().quake:toggle() end,
-            {description = "dropdown application", group = "launcher"})
+    awful.key({ modkey, }, "`", function () awful.screen.focused().quake:toggle() end)
 )
 
 clientkeys = gears.table.join(
