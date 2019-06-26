@@ -10,6 +10,7 @@ beautiful = require("beautiful")
 naughty = require("naughty")
 local menubar = require("menubar")
 local hotkeys_popup = require("awful.hotkeys_popup").widget
+lain  = require("lain")
 -- Enable VIM help for hotkeys widget when client with matching name is opened:
 require("awful.hotkeys_popup.keys.vim")
 
@@ -318,6 +319,10 @@ awful.screen.connect_for_each_screen(function(s)
     -- Create the wibox
     s.mywibox = awful.wibar({ position = "top", screen = s })
 
+    -- Quake terminal
+
+    s.quake = lain.util.quake({ app = terminal })
+
     -- Add widgets to the wibox
     s.mywibox:setup {
         layout = wibox.layout.align.horizontal,
@@ -463,7 +468,10 @@ globalkeys = gears.table.join(
     -- Screenshot
     awful.key({ }, "Print", function() awful.util.spawn("xfce4-screenshooter") end),
     -- xrandr
-    awful.key({ modkey }, "F12", xrandr)
+    awful.key({ modkey }, "F12", xrandr),
+    -- Dropdown application
+    awful.key({ modkey, }, "z", function () awful.screen.focused().quake:toggle() end,
+            {description = "dropdown application", group = "launcher"})
 )
 
 clientkeys = gears.table.join(
@@ -565,6 +573,11 @@ clientbuttons = gears.table.join(
     awful.button({ modkey }, 1, awful.mouse.client.move),
     awful.button({ modkey }, 3, awful.mouse.client.resize))
 
+clientbuttons_jetbrains = gears.table.join(
+        awful.button({ modkey }, 1, awful.mouse.client.move),
+        awful.button({ modkey }, 3, awful.mouse.client.resize)
+)
+
 -- Set keys
 root.keys(globalkeys)
 -- }}}
@@ -614,6 +627,18 @@ awful.rules.rules = {
     -- Add titlebars to normal clients and dialogs
     { rule_any = {type = { "normal", "dialog" }
       }, properties = { titlebars_enabled = true }
+    },
+
+    {
+        rule = {
+            class = "jetbrains-.*",
+        }, properties = { focus = true, buttons = clientbuttons_jetbrains }
+    },
+    {
+        rule = {
+            class = "jetbrains-.*",
+            name = "win.*"
+        }, properties = { titlebars_enabled = false, focusable = false, focus = true, floating = true, placement = awful.placement.restore }
     },
 
     -- Set Firefox to always map on the tag named "2" on screen 1.
