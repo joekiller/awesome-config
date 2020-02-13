@@ -155,9 +155,13 @@ run_once("pasystray")
 run_once("xfce4-clipman")
 run_once("xautolock -time 10 -locker slock")
 run_once("nm-applet")
+run_once("caffeine")
+run_once("optimus-manager-qt")
+run_once("sleep 10;jetbrains-toolbox --minimize")
 run_once("xinput --map-to-output " .. string.sub(os.capture("xinput list | grep Touchscreen | awk '{print $5}'", false), 4) .. " eDP1")
 
 -- }}}
+
 
 -- {{{ Helper functions
 local function client_menu_toggle_fn()
@@ -466,11 +470,14 @@ globalkeys = gears.table.join(
     awful.key({ }, "XF86MonBrightnessUp",   brightness.increase),
     awful.key({ }, "XF86MonBrightnessDown", brightness.decrease),
     -- Screenshot
-    awful.key({ }, "Print", function() awful.util.spawn("xfce4-screenshooter") end),
+    awful.key({ }, "Print", function() 
+	    awful.util.spawn("ksnip --qwindowgeometry 576x56+" .. mouse.coords().x .. "+" .. math.max(mouse.coords().y-56,0)) 
+    end),
     -- xrandr
     awful.key({ modkey }, "F12", xrandr),
     -- Dropdown application
-    awful.key({ modkey, }, "`", function () awful.screen.focused().quake:toggle() end)
+    awful.key({ modkey, }, "`", function () awful.screen.focused().quake:toggle() end,
+            { group = "launcher"})
 )
 
 clientkeys = gears.table.join(
@@ -612,7 +619,8 @@ awful.rules.rules = {
           "Wpa_gui",
           "pinentry",
           "veromix",
-          "xtightvncviewer"},
+          "xtightvncviewer",
+        },
 
         name = {
           "Event Tester",  -- xev.
@@ -626,6 +634,11 @@ awful.rules.rules = {
     -- Add titlebars to normal clients and dialogs
     { rule_any = {type = { "normal", "dialog" }
       }, properties = { titlebars_enabled = true }
+    },
+
+    { rule = {
+	    class = "ksnip",
+      }, properties = { floating = true, focus = true, }
     },
 
     {
