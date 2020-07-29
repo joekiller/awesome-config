@@ -141,11 +141,17 @@ awful.layout.layouts = {
 
 tags = {
     names  = { "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX" },
-    layout = { awful.layout.layouts[6], awful.layout.layouts[3],
-        awful.layout.layouts[3], awful.layout.layouts[3],
-        awful.layout.layouts[6], awful.layout.layouts[3],
-        awful.layout.layouts[6], awful.layout.layouts[3],
-        awful.layout.layouts[8] }
+    layout = {
+        awful.layout.layouts[14],
+        awful.layout.layouts[6],
+        awful.layout.layouts[3],
+        awful.layout.layouts[8],
+        awful.layout.layouts[14],
+        awful.layout.layouts[14],
+        awful.layout.layouts[14],
+        awful.layout.layouts[14],
+        awful.layout.layouts[14],
+    }
 }
 
 loadrc("widgets")
@@ -303,7 +309,7 @@ awful.screen.connect_for_each_screen(function(s)
     set_wallpaper(s)
 
     -- Each screen has its own tag table.
-    awful.tag(tags.names, s, tags.layout)
+    tags[s] = awful.tag(tags.names, s, tags.layout)
 
     -- Create a promptbox for each screen
     s.mypromptbox = awful.widget.prompt()
@@ -472,7 +478,10 @@ globalkeys = gears.table.join(
     awful.key({ }, "XF86MonBrightnessDown", brightness.decrease),
     -- Screenshot
     awful.key({ }, "Print", function() 
-	    awful.util.spawn("ksnip --qwindowgeometry 576x56+" .. mouse.coords().x .. "+" .. math.max(mouse.coords().y-56,0)) 
+	    awful.util.spawn("ksnip --qwindowgeometry 576x56+" .. mouse.coords().x .. "+" .. math.max(mouse.coords().y-56,0),
+            {
+                tag = mouse.screen.selected_tag, placement = awful.placement.under_mouse(client.focus)
+            })
     end),
     -- xrandr
     awful.key({ modkey }, "F12", xrandr),
@@ -621,6 +630,7 @@ awful.rules.rules = {
           "pinentry",
           "veromix",
           "xtightvncviewer",
+          "ksnip",
         },
 
         name = {
@@ -637,26 +647,25 @@ awful.rules.rules = {
       }, properties = { titlebars_enabled = true }
     },
 
-    { rule = {
-	    class = "ksnip",
-      }, properties = { floating = true, focus = true, }
-    },
 
     {
         rule = {
             class = "jetbrains-.*",
-        }, properties = { focus = true, buttons = clientbuttons_jetbrains }
+        }, properties = { tag = "I", focus = true, buttons = clientbuttons_jetbrains }
     },
     {
         rule = {
             class = "jetbrains-.*",
             name = "win.*"
-        }, properties = { titlebars_enabled = false, focusable = false, focus = true, floating = true, placement = awful.placement.restore }
+        }, properties = { titlebars_enabled = false, focusable = false, focus = true, floating = true }
     },
 
     -- Set Firefox to always map on the tag named "2" on screen 1.
     -- { rule = { class = "Firefox" },
     --   properties = { screen = 1, tag = "2" } },
+    { rule = { class = "Slack" },
+        properties = { tag = "I" }
+    },
 }
 -- }}}
 
