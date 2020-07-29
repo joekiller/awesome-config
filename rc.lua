@@ -136,6 +136,7 @@ awful.layout.layouts = {
     awful.layout.suit.max.fullscreen,
     awful.layout.suit.magnifier,
     awful.layout.suit.corner.nw,
+    lain.layout.centerwork,
 }
 
 tags = {
