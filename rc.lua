@@ -143,9 +143,9 @@ tags = {
     names  = { "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX" },
     layout = {
         awful.layout.layouts[14],
-        awful.layout.layouts[6],
         awful.layout.layouts[3],
-        awful.layout.layouts[8],
+        awful.layout.layouts[3],
+        awful.layout.layouts[3],
         awful.layout.layouts[14],
         awful.layout.layouts[14],
         awful.layout.layouts[14],
