@@ -29,10 +29,10 @@ local formats = {
 
 local awful  = require("awful")
 
-module("carb0n/icons")
+local icons = {}
 
 -- Lookup for an icon. Return full path.
-function lookup(arg)
+function icons.lookup(arg)
    local inames = assert(arg.name)
    local isizes = arg.size or sizes
    local itypes = arg.type or types
@@ -61,3 +61,5 @@ function lookup(arg)
       end
    end
 end
+
+return icons

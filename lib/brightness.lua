@@ -11,7 +11,7 @@ local math         = math
 require("lib/icons")
 local icons        = package.loaded["carb0n/icons"]
 
-module("carb0n/brightness")
+brightness = {}
 
 local nid = nil
 local function report()
@@ -27,12 +27,14 @@ local function report()
    end)
 end
 
-function increase()
+function brightness.increase()
    awful.util.spawn_with_shell("xbacklight -inc 5")
    report()
 end
 
-function decrease()
+function brightness.decrease()
    awful.util.spawn_with_shell("xbacklight -dec 5")
    report()
 end
+
+return brightness

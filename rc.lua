@@ -8,6 +8,7 @@ wibox = require("wibox")
 beautiful = require("beautiful")
 -- Notification library
 naughty = require("naughty")
+local brightness = require("lib/brightness")
 local menubar = require("menubar")
 local hotkeys_popup = require("awful.hotkeys_popup").widget
 lain  = require("lain")
@@ -73,7 +74,7 @@ function loadrc(name, mod)
     local result
 
     -- Which file? In rc/ or in lib/?
-    local path = awful.util.getdir("config") .. "/" ..
+    local path = awful.util.getdir("config") ..
             (mod and "lib" or "rc") ..
             "/" .. name .. ".lua"
 
