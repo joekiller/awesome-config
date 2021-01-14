@@ -647,18 +647,16 @@ awful.rules.rules = {
     { rule_any = {type = { "normal", "dialog" }
       }, properties = { titlebars_enabled = true }
     },
-
-
     {
         rule = {
             class = "jetbrains-.*",
-        }, properties = { tag = "I", focus = true, buttons = clientbuttons_jetbrains }
+        }, properties = { focus = true, buttons = clientbuttons_jetbrains }
     },
     {
         rule = {
             class = "jetbrains-.*",
             name = "win.*"
-        }, properties = { titlebars_enabled = false, focusable = false, focus = true, floating = true }
+        }, properties = { titlebars_enabled = false, focusable = false, focus = true, floating = true, placement = awful.placement.restore }
     },
 
     -- Set Firefox to always map on the tag named "2" on screen 1.
