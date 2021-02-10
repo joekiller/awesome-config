@@ -165,7 +165,7 @@ run_once("xautolock -time 10 -locker slock")
 run_once("nm-applet")
 run_once("caffeine")
 run_once("optimus-manager-qt")
-run_once("sleep 10;jetbrains-toolbox --minimize")
+-- run_once("sleep 10;jetbrains-toolbox --minimize")
 run_once("xinput --map-to-output " .. string.sub(os.capture("xinput list | grep Touchscreen | awk '{print $5}'", false), 4) .. " eDP1")
 
 -- }}}
